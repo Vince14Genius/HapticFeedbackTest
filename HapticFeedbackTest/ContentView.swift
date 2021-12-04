@@ -6,11 +6,37 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(spacing: 20) {
+            Text("Input Click")
+                .onTapGesture {
+                    UISelectionFeedbackGenerator().selectionChanged()
+                    AudioServicesPlaySystemSound(1104)
+                }
+            
+            Button("Selection Changed") {
+                UISelectionFeedbackGenerator().selectionChanged()
+            }
+            
+            Button("Impact") {
+                UIImpactFeedbackGenerator().impactOccurred()
+            }
+            
+            Button("Notification: Success") {
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
+            
+            Button("Notification: Warning") {
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            }
+            
+            Button("Notification: Error") {
+                UINotificationFeedbackGenerator().notificationOccurred(.error)
+            }
+        }
     }
 }
 
